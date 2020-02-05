@@ -3,23 +3,35 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04F09A2EDCF80FA31627F71A /* Pods_KinopoiskFilmsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 225F7F38D2F6E02AE5183301 /* Pods_KinopoiskFilmsApp.framework */; };
 		7C94FC0723EAE86C00D55670 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94FC0623EAE86C00D55670 /* AppDelegate.swift */; };
-		7C94FC0923EAE86C00D55670 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94FC0823EAE86C00D55670 /* RootViewController.swift */; };
 		7C94FC0B23EAE86D00D55670 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C94FC0A23EAE86D00D55670 /* Assets.xcassets */; };
 		7C94FC0E23EAE86D00D55670 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C94FC0C23EAE86D00D55670 /* LaunchScreen.storyboard */; };
+		7C94FC1623EAF3E300D55670 /* FilmCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94FC1523EAF3E300D55670 /* FilmCell.swift */; };
+		7C94FC1823EAF6C300D55670 /* FilmsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94FC1723EAF6C300D55670 /* FilmsData.swift */; };
+		7C94FC1A23EAF9BC00D55670 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C94FC1923EAF9BC00D55670 /* Colors.xcassets */; };
+		7C94FC1C23EB082800D55670 /* TinyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94FC1B23EB082800D55670 /* TinyView.swift */; };
+		7C94FC1E23EB0E2C00D55670 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94FC1D23EB0E2C00D55670 /* RootViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		225F7F38D2F6E02AE5183301 /* Pods_KinopoiskFilmsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KinopoiskFilmsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C94FC0323EAE86C00D55670 /* KinopoiskFilmsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KinopoiskFilmsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C94FC0623EAE86C00D55670 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7C94FC0823EAE86C00D55670 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		7C94FC0A23EAE86D00D55670 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7C94FC0D23EAE86D00D55670 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7C94FC0F23EAE86D00D55670 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7C94FC1523EAF3E300D55670 /* FilmCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmCell.swift; sourceTree = "<group>"; };
+		7C94FC1723EAF6C300D55670 /* FilmsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsData.swift; sourceTree = "<group>"; };
+		7C94FC1923EAF9BC00D55670 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		7C94FC1B23EB082800D55670 /* TinyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TinyView.swift; sourceTree = "<group>"; };
+		7C94FC1D23EB0E2C00D55670 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		A5A7DFF6F0AA7F0844FE8515 /* Pods-KinopoiskFilmsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KinopoiskFilmsApp.debug.xcconfig"; path = "Target Support Files/Pods-KinopoiskFilmsApp/Pods-KinopoiskFilmsApp.debug.xcconfig"; sourceTree = "<group>"; };
+		FB027406C61728ED51AB48CE /* Pods-KinopoiskFilmsApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KinopoiskFilmsApp.release.xcconfig"; path = "Target Support Files/Pods-KinopoiskFilmsApp/Pods-KinopoiskFilmsApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04F09A2EDCF80FA31627F71A /* Pods_KinopoiskFilmsApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +51,8 @@
 			children = (
 				7C94FC0523EAE86C00D55670 /* KinopoiskFilmsApp */,
 				7C94FC0423EAE86C00D55670 /* Products */,
+				9AE64E568EB69262F3BF7BA4 /* Pods */,
+				D13C05E3A79BED105E7D975F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -53,12 +68,33 @@
 			isa = PBXGroup;
 			children = (
 				7C94FC0623EAE86C00D55670 /* AppDelegate.swift */,
-				7C94FC0823EAE86C00D55670 /* RootViewController.swift */,
+				7C94FC1D23EB0E2C00D55670 /* RootViewController.swift */,
+				7C94FC1523EAF3E300D55670 /* FilmCell.swift */,
+				7C94FC1B23EB082800D55670 /* TinyView.swift */,
 				7C94FC0A23EAE86D00D55670 /* Assets.xcassets */,
+				7C94FC1923EAF9BC00D55670 /* Colors.xcassets */,
 				7C94FC0C23EAE86D00D55670 /* LaunchScreen.storyboard */,
 				7C94FC0F23EAE86D00D55670 /* Info.plist */,
+				7C94FC1723EAF6C300D55670 /* FilmsData.swift */,
 			);
 			path = KinopoiskFilmsApp;
+			sourceTree = "<group>";
+		};
+		9AE64E568EB69262F3BF7BA4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A5A7DFF6F0AA7F0844FE8515 /* Pods-KinopoiskFilmsApp.debug.xcconfig */,
+				FB027406C61728ED51AB48CE /* Pods-KinopoiskFilmsApp.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		D13C05E3A79BED105E7D975F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				225F7F38D2F6E02AE5183301 /* Pods_KinopoiskFilmsApp.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -68,9 +104,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7C94FC1223EAE86D00D55670 /* Build configuration list for PBXNativeTarget "KinopoiskFilmsApp" */;
 			buildPhases = (
+				C24F6AF31B4821988C1F90B6 /* [CP] Check Pods Manifest.lock */,
 				7C94FBFF23EAE86C00D55670 /* Sources */,
 				7C94FC0023EAE86C00D55670 /* Frameworks */,
 				7C94FC0123EAE86C00D55670 /* Resources */,
+				88963328FF17809A91323259 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -119,6 +157,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C94FC1A23EAF9BC00D55670 /* Colors.xcassets in Resources */,
 				7C94FC0B23EAE86D00D55670 /* Assets.xcassets in Resources */,
 				7C94FC0E23EAE86D00D55670 /* LaunchScreen.storyboard in Resources */,
 			);
@@ -126,13 +165,58 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		88963328FF17809A91323259 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KinopoiskFilmsApp/Pods-KinopoiskFilmsApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KinopoiskFilmsApp/Pods-KinopoiskFilmsApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KinopoiskFilmsApp/Pods-KinopoiskFilmsApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C24F6AF31B4821988C1F90B6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KinopoiskFilmsApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		7C94FBFF23EAE86C00D55670 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7C94FC0923EAE86C00D55670 /* RootViewController.swift in Sources */,
+				7C94FC1623EAF3E300D55670 /* FilmCell.swift in Sources */,
+				7C94FC1E23EB0E2C00D55670 /* RootViewController.swift in Sources */,
 				7C94FC0723EAE86C00D55670 /* AppDelegate.swift in Sources */,
+				7C94FC1823EAF6C300D55670 /* FilmsData.swift in Sources */,
+				7C94FC1C23EB082800D55670 /* TinyView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,11 +350,13 @@
 		};
 		7C94FC1323EAE86D00D55670 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A5A7DFF6F0AA7F0844FE8515 /* Pods-KinopoiskFilmsApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CQPZ5C4VAN;
 				INFOPLIST_FILE = KinopoiskFilmsApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -284,11 +370,13 @@
 		};
 		7C94FC1423EAE86D00D55670 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FB027406C61728ED51AB48CE /* Pods-KinopoiskFilmsApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CQPZ5C4VAN;
 				INFOPLIST_FILE = KinopoiskFilmsApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

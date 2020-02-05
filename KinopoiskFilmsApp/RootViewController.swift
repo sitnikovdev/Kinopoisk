@@ -6,7 +6,7 @@
 //  Copyright © 2020 Oleg Sitnikov. All rights reserved.
 //
 
-import UIKit
+import TinyConstraints
 
 class RootViewController: UITableViewController {
 
@@ -44,8 +44,17 @@ class RootViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let outerContainer = BaseView(backgroundColor: .white)
         
-        return UIView()
+        let labelContainer = BaseView(backgroundColor: #colorLiteral(red: 0.2588235294, green: 0.2588235294, blue: 0.2588235294, alpha: 1))
+        let header = BaseLabel(text: "Section: \(section)")
+        labelContainer.addSubview(header)
+        outerContainer.addSubview(labelContainer)
+        labelContainer.edges(to: outerContainer, insets: TinyEdgeInsets(top: 5, left: 16, bottom: 5, right: 16), isActive: true)
+        header.height(25)
+        header.width(100)
+        header.center(in: labelContainer)
+        return outerContainer
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

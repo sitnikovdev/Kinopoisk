@@ -11,6 +11,15 @@ import TinyConstraints
 class FilmCell: UITableViewCell {
     
 // MARK: - Properties
+     var film: Film! {
+        didSet {
+            localLabel.text = "\(film.localName) / \(film.year)"
+            originalLabel.text = "\(film.originalName)"
+            ratingLabel.text = "\(film.rating)"
+            
+            setRating()
+        }
+    }
     
     let films = FilmsData.films
     let labelHeight: CGFloat = 30
@@ -20,11 +29,11 @@ class FilmCell: UITableViewCell {
     static let rowHeightSize: CGFloat = 150
     
 // MARK: - UI Views
-    let container = BaseView(backgroundColor: #colorLiteral(red: 0.1294117647, green: 0.5882352941, blue: 0.9529411765, alpha: 1))
+    let viewContainer = BaseView(backgroundColor: #colorLiteral(red: 0.1294117647, green: 0.5882352941, blue: 0.9529411765, alpha: 1))
     
-    let local = BaseLabel(backgroundColor:#colorLiteral(red: 1, green: 0.5960784314, blue: 0, alpha: 1), text: "Бойцовский клуб")
-    let rating = BaseLabel(backgroundColor: #colorLiteral(red: 0.2980392157, green: 0.6862745098, blue: 0.3137254902, alpha: 1), text: "8.934")
-    let original = BaseLabel(backgroundColor: #colorLiteral(red: 0.9568627451, green: 0.262745098, blue: 0.2117647059, alpha: 1), text: "Fight Club", textColor: .white)
+    let localLabel = BaseLabel(backgroundColor:#colorLiteral(red: 1, green: 0.5960784314, blue: 0, alpha: 1), text: "Бойцовский клуб")
+    let ratingLabel = BaseLabel(backgroundColor: #colorLiteral(red: 0.2980392157, green: 0.6862745098, blue: 0.3137254902, alpha: 1), text: "8.934")
+    let originalLabel = BaseLabel(backgroundColor: #colorLiteral(red: 0.9568627451, green: 0.262745098, blue: 0.2117647059, alpha: 1), text: "Fight Club", textColor: .white)
     
 
 // MARK: - Initializers
@@ -47,36 +56,51 @@ class FilmCell: UITableViewCell {
     }
 
     fileprivate func addViews() {
-        contentView.addSubview(container)
+        contentView.addSubview(viewContainer)
         // local
-        container.addSubview(local)
+        viewContainer.addSubview(localLabel)
         // rating
-        container.addSubview(rating)
+        viewContainer.addSubview(ratingLabel)
         // original
-        container.addSubview(original)
+        viewContainer.addSubview(originalLabel)
     }
     
     fileprivate func constraintViews() {
         //container
-        container.edges(to: contentView, insets: TinyEdgeInsets(top: 5, left: 16, bottom: 5, right: 16))
+        viewContainer.edges(to: contentView, insets: TinyEdgeInsets(top: 5, left: 16, bottom: 5, right: 16))
         
         // local
-        local.height(labelHeight)
-        local.top(to: container, offset: 16, isActive: true)
-        local.leading(to: container, offset: 16, isActive: true)
+        localLabel.height(labelHeight)
+        localLabel.top(to: viewContainer, offset: 16, isActive: true)
+        localLabel.leading(to: viewContainer, offset: 16, isActive: true)
         
         // rating
-        rating.height(labelHeight)
-        rating.trailing(to: container, offset: -16)
-        rating.top(to: container, offset: 16)
+        ratingLabel.height(labelHeight)
+        ratingLabel.trailing(to: viewContainer, offset: -16)
+        ratingLabel.top(to: viewContainer, offset: 16)
         
         // original
-        original.height(labelHeight)
-        original.width(100)
-        original.bottom(to: container, offset: -16,  isActive: true)
-        original.leading(to: container, offset: 16, isActive: true)
+        originalLabel.height(labelHeight)
+        originalLabel.width(100)
+        originalLabel.bottom(to: viewContainer, offset: -16,  isActive: true)
+        originalLabel.leading(to: viewContainer, offset: 16, isActive: true)
     }
     
-    
+    fileprivate func setRating() {
+        // Set film rating by color
+        if let filmRating = Double(film.rating) {
+            switch filmRating {
+            case  7... : //от 7 и выше - #007b00
+                ratingLabel.backgroundColor = #colorLiteral(red: 0, green: 0.4823529412, blue: 0, alpha: 1)
+            case 5...6: // от 5 до 6 включительно - #5f5f5f
+                ratingLabel.backgroundColor = #colorLiteral(red: 0.3725490196, green: 0.3725490196, blue: 0.3725490196, alpha: 1)
+            case 0..<5: // ниже 5 - #ff0b0b
+                ratingLabel.backgroundColor = #colorLiteral(red: 1, green: 0.0431372549, blue: 0.0431372549, alpha: 1)
+            default:
+                // From 6 to 7 - undefined, set default color
+                ratingLabel.backgroundColor = #colorLiteral(red: 0.3999555707, green: 0.4000248015, blue: 0.1652560234, alpha: 1)
+            }
+        }
+    }
     
 }

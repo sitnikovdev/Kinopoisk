@@ -25,3 +25,27 @@ class FilmsData {
         
     ]
 }
+
+extension FilmsData {
+    
+    static func getFilms() -> [[Film]] {
+        
+        var filmsGrouped = [[Film]]()
+        let groupByYear = Dictionary(grouping: films) { $0.year}
+        
+        let sortedYears = groupByYear.keys.sorted()
+        
+        sortedYears.forEach {(key) in
+            let films = groupByYear[key]
+            let orderByRating = films?.sorted(by: { (lhs, rhs) -> Bool in
+                if let ratingLhs = Double(lhs.rating), let ratingRhs = Double(rhs.rating) {
+                  return ratingRhs < ratingLhs
+                }
+                 return false
+            })
+            filmsGrouped.append(orderByRating ?? [])
+        }
+        
+        return filmsGrouped
+    }
+}

@@ -22,7 +22,16 @@ class RootViewController: UITableViewController {
         view.backgroundColor = .white
         navigationItem.title = "Films"
         setupTableView()
+        loadData()
+    }
+    
+    fileprivate func loadData() {
         
+        films = FilmsData.getFilms()
+        
+//        print ("""
+//               Films loaded: \(films.count)
+//              """)
     }
     
     fileprivate func setupTableView() {
@@ -40,7 +49,9 @@ class RootViewController: UITableViewController {
 // MARK: - TableView delegate protocol implemetation
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Section: \(indexPath.section) Row: \(indexPath.row)")
+
+        let filmDetailVc = FilmDetailViewController()
+        navigationController?.pushViewController(filmDetailVc, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -49,34 +60,50 @@ class RootViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let outerContainer = BaseView(backgroundColor: .white)
+        let header = BaseLabel(text: "Section: \(section)")
+        
+        if let film = films[section].first {
+            header.text = film.year
+        }
+        
+        
+        let headerContainer = BaseView(backgroundColor: .white)
         
         let labelContainer = BaseView(backgroundColor: #colorLiteral(red: 0.2588235294, green: 0.2588235294, blue: 0.2588235294, alpha: 1))
-        let header = BaseLabel(text: "Section: \(section)")
+        
+        
         labelContainer.addSubview(header)
-        outerContainer.addSubview(labelContainer)
-        labelContainer.edges(to: outerContainer, insets: TinyEdgeInsets(top: 5, left: 16, bottom: 5, right: 16), isActive: true)
+        headerContainer.addSubview(labelContainer)
+        labelContainer.edges(to: headerContainer, insets: TinyEdgeInsets(top: 5, left: 16, bottom: 5, right: 16), isActive: true)
         header.height(25)
         header.width(100)
         header.center(in: labelContainer)
-        return outerContainer
+        return headerContainer
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         
-        return 1
+        return films.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 6
+        return films[section].count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: FilmCell.reuseIdentifier, for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: FilmCell.reuseIdentifier, for: indexPath) as? FilmCell
+            else {
+                fatalError("""
+                    Expected \(FilmCell.self) type for reuseIdentifier \(FilmCell.reuseIdentifier).
+                """
+                )
+        }
         
-        cell.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.968627451, alpha: 1)
+        
+        cell.film = films[indexPath.section][indexPath.row]
+        
         
         return cell
     }

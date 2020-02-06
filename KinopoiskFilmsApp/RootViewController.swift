@@ -11,7 +11,8 @@ import TinyConstraints
 class RootViewController: UITableViewController {
 
 // MARK: - Properties
-    let tableViewSectionHeadrHeight = 50
+    var films: [[Film]] = []
+    var selectedFilm: Film!
     
     
 // MARK: - ViewController Life Cycle
@@ -28,7 +29,7 @@ class RootViewController: UITableViewController {
 
         tableView.delegate = self
         tableView.dataSource = self
-
+        tableView.separatorStyle = .none
         tableView.rowHeight = FilmCell.rowHeightSize
         
         tableView.register(FilmCell.self, forCellReuseIdentifier: FilmCell.reuseIdentifier)
@@ -38,9 +39,13 @@ class RootViewController: UITableViewController {
     
 // MARK: - TableView delegate protocol implemetation
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Section: \(indexPath.section) Row: \(indexPath.row)")
+    }
+    
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
-        return CGFloat(self.tableViewSectionHeadrHeight)
+        return FilmCell.sectionHeightSize
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -75,6 +80,8 @@ class RootViewController: UITableViewController {
         
         return cell
     }
+    
+    
     
     
 }

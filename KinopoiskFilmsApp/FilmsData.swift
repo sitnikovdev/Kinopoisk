@@ -9,13 +9,7 @@
 import Foundation
 
 class FilmsData {
-   struct Film  {
-       let localName: String
-       let originalName: String
-       let year: String
-       let rating: String
-       let description: String
-   }
+   
     
     
    static let films = [

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		04F09A2EDCF80FA31627F71A /* Pods_KinopoiskFilmsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 225F7F38D2F6E02AE5183301 /* Pods_KinopoiskFilmsApp.framework */; };
 		7C28A34C23EBE80F001EC68E /* BaseImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C28A34B23EBE80F001EC68E /* BaseImage.swift */; };
+		7C28A34E23EC04C1001EC68E /* ScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C28A34D23EC04C1001EC68E /* ScrollViewController.swift */; };
 		7C94FC0723EAE86C00D55670 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94FC0623EAE86C00D55670 /* AppDelegate.swift */; };
 		7C94FC0B23EAE86D00D55670 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C94FC0A23EAE86D00D55670 /* Assets.xcassets */; };
 		7C94FC0E23EAE86D00D55670 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C94FC0C23EAE86D00D55670 /* LaunchScreen.storyboard */; };
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		225F7F38D2F6E02AE5183301 /* Pods_KinopoiskFilmsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KinopoiskFilmsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C28A34B23EBE80F001EC68E /* BaseImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseImage.swift; sourceTree = "<group>"; };
+		7C28A34D23EC04C1001EC68E /* ScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewController.swift; sourceTree = "<group>"; };
 		7C94FC0323EAE86C00D55670 /* KinopoiskFilmsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KinopoiskFilmsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C94FC0623EAE86C00D55670 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7C94FC0A23EAE86D00D55670 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				7C94FC1F23EB0F5E00D55670 /* Support */,
 				7C94FC0F23EAE86D00D55670 /* Info.plist */,
 				7C28A34B23EBE80F001EC68E /* BaseImage.swift */,
+				7C28A34D23EC04C1001EC68E /* ScrollViewController.swift */,
 			);
 			path = KinopoiskFilmsApp;
 			sourceTree = "<group>";
@@ -239,6 +242,7 @@
 				7C28A34C23EBE80F001EC68E /* BaseImage.swift in Sources */,
 				7C94FC0723EAE86C00D55670 /* AppDelegate.swift in Sources */,
 				7C94FC1823EAF6C300D55670 /* FilmsData.swift in Sources */,
+				7C28A34E23EC04C1001EC68E /* ScrollViewController.swift in Sources */,
 				7C94FC1C23EB082800D55670 /* BaseView.swift in Sources */,
 				7C94FC2523EB276A00D55670 /* Film.swift in Sources */,
 			);

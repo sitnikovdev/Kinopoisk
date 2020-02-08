@@ -9,8 +9,12 @@
 import TinyConstraints
 
 class RootViewController: UITableViewController {
+    
+// MARK: - Constants
+    let filmData = FilmsData()
 
 // MARK: - Properties
+    /// Films grouped by years
     var films: [[Film]] = []
     var selectedFilm: Film!
     
@@ -26,12 +30,7 @@ class RootViewController: UITableViewController {
     }
     
     fileprivate func loadData() {
-        
-        films = FilmsData.getFilms()
-        
-//        print ("""
-//               Films loaded: \(films.count)
-//              """)
+       self.films = self.filmData.films
     }
     
     fileprivate func setupTableView() {
@@ -39,7 +38,12 @@ class RootViewController: UITableViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
-        tableView.rowHeight = FilmCell.rowHeightSize
+        tableView.rowHeight = UITableView.automaticDimension
+//        tableView.rowHeight = FilmCell.rowHeightSize
+        tableView.estimatedRowHeight = FilmCell.rowHeightSize
+        tableView.clipsToBounds = true
+        tableView.isOpaque = true
+        
         
         tableView.register(FilmCell.self, forCellReuseIdentifier: FilmCell.reuseIdentifier)
     }
@@ -51,6 +55,10 @@ class RootViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         let filmDetailVc = FilmDetailViewController()
+        let filmSelected = films[indexPath.section][indexPath.row]
+        tableView.deselectRow(at: indexPath, animated: false)
+        filmDetailVc.film = filmSelected
+        
         navigationController?.pushViewController(filmDetailVc, animated: true)
     }
     
@@ -63,14 +71,12 @@ class RootViewController: UITableViewController {
         let header = BaseLabel(text: "Section: \(section)")
         
         if let film = films[section].first {
-            header.text = film.year
+            header.text = String(film.year)
+            header.textAlignment = .center
         }
         
-        
         let headerContainer = BaseView(backgroundColor: .white)
-        
         let labelContainer = BaseView(backgroundColor: #colorLiteral(red: 0.2588235294, green: 0.2588235294, blue: 0.2588235294, alpha: 1))
-        
         
         labelContainer.addSubview(header)
         headerContainer.addSubview(labelContainer)
@@ -82,12 +88,10 @@ class RootViewController: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        
         return films.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return films[section].count
     }
 
@@ -101,15 +105,9 @@ class RootViewController: UITableViewController {
                 )
         }
         
-        
         cell.film = films[indexPath.section][indexPath.row]
-        
         
         return cell
     }
-    
-    
-    
-    
 }
 

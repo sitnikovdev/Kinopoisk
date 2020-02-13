@@ -9,7 +9,7 @@
 import UIKit
 
 class BaseImage: UIImageView {
-    
+    var isLoaded = false
     
     init(_ image: UIImage, backgroundColor: UIColor = .purple,   cornerRadius: CGFloat = 0 ) {
         super.init(frame: .zero)

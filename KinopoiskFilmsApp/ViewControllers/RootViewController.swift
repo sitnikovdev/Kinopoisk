@@ -10,36 +10,66 @@ import TinyConstraints
 
 class RootViewController: UITableViewController {
     
-// MARK: - Constants
+    
+    // MARK: - Constants
     let filmData = FilmsData()
-
-// MARK: - Properties
+    
+    // MARK: - Properties
     /// Films grouped by years
     var films: [[Film]] = []
     var selectedFilm: Film!
     
     
-// MARK: - ViewController Life Cycle
+    // MARK: - ViewController Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         navigationItem.title = "Films"
+        startNetMonitor()
         setupTableView()
         loadData()
+        tableView.reloadData()
+        
+        
+        
+        NetStatus.shared.netStatusChangeHandler = {
+            DispatchQueue.main.async {
+                [ unowned self ] in
+                if !NetStatus.shared.isConnected {
+                    self.showAlert()
+                }
+                self.tableView.reloadData()
+                self.loadData()
+            }
+        }
+    }
+    
+    func showAlert() {
+        DispatchQueue.main.async {
+            Alert.show(on: self, with: "Остутствует подлючение", message: "Не возможно загрузить ресурс.")
+        }
+    }
+    
+    func startNetMonitor() {
+        if !NetStatus.shared.isMonitoring {
+            NetStatus.shared.startMonitoring()
+        } else {
+            NetStatus.shared.stopMonitoring()
+        }
     }
     
     fileprivate func loadData() {
-       self.films = self.filmData.films
+        self.films = self.filmData.films
     }
     
     fileprivate func setupTableView() {
-
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
         tableView.rowHeight = UITableView.automaticDimension
-//        tableView.rowHeight = FilmCell.rowHeightSize
+        //        tableView.rowHeight = FilmCell.rowHeightSize
         tableView.estimatedRowHeight = FilmCell.rowHeightSize
         tableView.clipsToBounds = true
         tableView.isOpaque = true
@@ -47,13 +77,13 @@ class RootViewController: UITableViewController {
         
         tableView.register(FilmCell.self, forCellReuseIdentifier: FilmCell.reuseIdentifier)
     }
-
-     
     
-// MARK: - TableView delegate protocol implemetation
+    
+    
+    // MARK: - TableView delegate protocol implemetation
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        
         let filmDetailVc = FilmDetailViewController()
         let filmSelected = films[indexPath.section][indexPath.row]
         tableView.deselectRow(at: indexPath, animated: false)
@@ -62,8 +92,9 @@ class RootViewController: UITableViewController {
         navigationController?.pushViewController(filmDetailVc, animated: true)
     }
     
+    
+    
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        
         return FilmCell.sectionHeightSize
     }
     
@@ -94,14 +125,14 @@ class RootViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return films[section].count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: FilmCell.reuseIdentifier, for: indexPath) as? FilmCell
             else {
                 fatalError("""
                     Expected \(FilmCell.self) type for reuseIdentifier \(FilmCell.reuseIdentifier).
-                """
+                    """
                 )
         }
         
@@ -110,4 +141,6 @@ class RootViewController: UITableViewController {
         return cell
     }
 }
+
+
 

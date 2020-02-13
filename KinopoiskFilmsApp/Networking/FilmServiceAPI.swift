@@ -15,6 +15,7 @@ class FilmServiceAPI {
     
     private init() {}
     private let urlSession = URLSession.shared
+    
     private let baseURL = URL(string: "https://s3-eu-west-1.amazonaws.com/sequeniatesttask/films.json")
     
     private let jsonDecoder: JSONDecoder = {

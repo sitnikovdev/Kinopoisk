@@ -27,12 +27,14 @@ class FilmDetailViewController: UIViewController {
             }
             if let imageUrl = film.imageUrl {
                 if let url = URL(string: imageUrl) {
-                    self.pictureImage.load(url: url)
+                  loadImageFrom(url: url)
                 }
             }
             
         }
     }
+    
+    
     
     lazy var contentViewSize =  CGSize(width: self.view.frame.width, height: self.view.frame.height )
     // MARK: - UI Views
@@ -68,6 +70,25 @@ class FilmDetailViewController: UIViewController {
                                      font: .systemFont(ofSize: 22)
     )
     
+    
+    
+    func loadImageFrom(url: URL) {
+            DispatchQueue.global().async {
+                [weak self] in
+                if let data = try? Data(contentsOf: url) {
+                    if let image = UIImage(data: data) {
+                        DispatchQueue.main.async {
+                            self?.pictureImage.image = image
+                        }
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        Alert.show(on: self!, with: "Resource not found", message: "Unable to load film picture.")
+                        self?.pictureImage.image = #imageLiteral(resourceName: "no_image.jpg")
+                    }
+                }
+            }
+        }
     // MARK: - ViewController Life Cycle
     
     override func viewDidLoad() {
@@ -138,3 +159,5 @@ class FilmDetailViewController: UIViewController {
     
     
 }
+
+ 

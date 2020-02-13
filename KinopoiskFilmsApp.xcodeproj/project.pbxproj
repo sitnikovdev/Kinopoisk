@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		04F09A2EDCF80FA31627F71A /* Pods_KinopoiskFilmsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 225F7F38D2F6E02AE5183301 /* Pods_KinopoiskFilmsApp.framework */; };
+		7C029E3523F3FADF005772B4 /* NetStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C029E3423F3FADF005772B4 /* NetStatus.swift */; };
 		7C28A34C23EBE80F001EC68E /* BaseImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C28A34B23EBE80F001EC68E /* BaseImage.swift */; };
 		7C28A35023ECDF27001EC68E /* URLSession+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C28A34F23ECDF27001EC68E /* URLSession+.swift */; };
 		7C28A35223ECE418001EC68E /* FilmServiceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C28A35123ECE418001EC68E /* FilmServiceAPI.swift */; };
-		7C28A35D23EF15C6001EC68E /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C28A35C23EF15C6001EC68E /* UIImageView+.swift */; };
 		7C94FC0723EAE86C00D55670 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94FC0623EAE86C00D55670 /* AppDelegate.swift */; };
 		7C94FC0B23EAE86D00D55670 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C94FC0A23EAE86D00D55670 /* Assets.xcassets */; };
 		7C94FC0E23EAE86D00D55670 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C94FC0C23EAE86D00D55670 /* LaunchScreen.storyboard */; };
@@ -23,14 +23,15 @@
 		7C94FC2323EB151C00D55670 /* BaseLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94FC2223EB151C00D55670 /* BaseLabel.swift */; };
 		7C94FC2523EB276A00D55670 /* Film.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94FC2423EB276A00D55670 /* Film.swift */; };
 		7C94FC2723EB283800D55670 /* FilmDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94FC2623EB283800D55670 /* FilmDetailViewController.swift */; };
+		7CFE96EF23F3CB630096D58E /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFE96EE23F3CB630096D58E /* Alert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		225F7F38D2F6E02AE5183301 /* Pods_KinopoiskFilmsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KinopoiskFilmsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C029E3423F3FADF005772B4 /* NetStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetStatus.swift; sourceTree = "<group>"; };
 		7C28A34B23EBE80F001EC68E /* BaseImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseImage.swift; sourceTree = "<group>"; };
 		7C28A34F23ECDF27001EC68E /* URLSession+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+.swift"; sourceTree = "<group>"; };
 		7C28A35123ECE418001EC68E /* FilmServiceAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmServiceAPI.swift; sourceTree = "<group>"; };
-		7C28A35C23EF15C6001EC68E /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		7C94FC0323EAE86C00D55670 /* KinopoiskFilmsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KinopoiskFilmsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C94FC0623EAE86C00D55670 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7C94FC0A23EAE86D00D55670 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -44,6 +45,7 @@
 		7C94FC2223EB151C00D55670 /* BaseLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseLabel.swift; sourceTree = "<group>"; };
 		7C94FC2423EB276A00D55670 /* Film.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Film.swift; sourceTree = "<group>"; };
 		7C94FC2623EB283800D55670 /* FilmDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmDetailViewController.swift; sourceTree = "<group>"; };
+		7CFE96EE23F3CB630096D58E /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		A5A7DFF6F0AA7F0844FE8515 /* Pods-KinopoiskFilmsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KinopoiskFilmsApp.debug.xcconfig"; path = "Target Support Files/Pods-KinopoiskFilmsApp/Pods-KinopoiskFilmsApp.debug.xcconfig"; sourceTree = "<group>"; };
 		FB027406C61728ED51AB48CE /* Pods-KinopoiskFilmsApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KinopoiskFilmsApp.release.xcconfig"; path = "Target Support Files/Pods-KinopoiskFilmsApp/Pods-KinopoiskFilmsApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -64,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				7C94FC1D23EB0E2C00D55670 /* RootViewController.swift */,
+				7CFE96EE23F3CB630096D58E /* Alert.swift */,
 				7C94FC2623EB283800D55670 /* FilmDetailViewController.swift */,
 			);
 			path = ViewControllers;
@@ -90,6 +93,7 @@
 			children = (
 				7C28A34F23ECDF27001EC68E /* URLSession+.swift */,
 				7C28A35123ECE418001EC68E /* FilmServiceAPI.swift */,
+				7C029E3423F3FADF005772B4 /* NetStatus.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -133,16 +137,15 @@
 		7C94FC0523EAE86C00D55670 /* KinopoiskFilmsApp */ = {
 			isa = PBXGroup;
 			children = (
-				7C94FC0623EAE86C00D55670 /* AppDelegate.swift */,
+				7C28A35623ECFC1D001EC68E /* Networking */,
+				7CFE96ED23F34B9F0096D58E /* AppDelegate */,
 				7C28A35323ECFBC7001EC68E /* ViewControllers */,
 				7C28A35723ECFC68001EC68E /* Views */,
 				7C28A35423ECFBF3001EC68E /* Cells */,
 				7C28A35523ECFC08001EC68E /* Model */,
 				7C28A35923ECFD21001EC68E /* Data */,
 				7C94FC1F23EB0F5E00D55670 /* Resources */,
-				7C28A35623ECFC1D001EC68E /* Networking */,
 				7C94FC0F23EAE86D00D55670 /* Info.plist */,
-				7C28A35C23EF15C6001EC68E /* UIImageView+.swift */,
 			);
 			path = KinopoiskFilmsApp;
 			sourceTree = "<group>";
@@ -155,6 +158,14 @@
 				7C94FC0C23EAE86D00D55670 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		7CFE96ED23F34B9F0096D58E /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				7C94FC0623EAE86C00D55670 /* AppDelegate.swift */,
+			);
+			path = AppDelegate;
 			sourceTree = "<group>";
 		};
 		9AE64E568EB69262F3BF7BA4 /* Pods */ = {
@@ -289,13 +300,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7C28A35D23EF15C6001EC68E /* UIImageView+.swift in Sources */,
 				7C94FC1623EAF3E300D55670 /* FilmCell.swift in Sources */,
 				7C94FC2323EB151C00D55670 /* BaseLabel.swift in Sources */,
 				7C94FC1E23EB0E2C00D55670 /* RootViewController.swift in Sources */,
 				7C94FC2723EB283800D55670 /* FilmDetailViewController.swift in Sources */,
+				7CFE96EF23F3CB630096D58E /* Alert.swift in Sources */,
 				7C28A35023ECDF27001EC68E /* URLSession+.swift in Sources */,
 				7C28A34C23EBE80F001EC68E /* BaseImage.swift in Sources */,
+				7C029E3523F3FADF005772B4 /* NetStatus.swift in Sources */,
 				7C94FC0723EAE86C00D55670 /* AppDelegate.swift in Sources */,
 				7C94FC1823EAF6C300D55670 /* FilmsData.swift in Sources */,
 				7C94FC1C23EB082800D55670 /* BaseView.swift in Sources */,
@@ -448,7 +460,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = development.olegstv.KinopoiskFilmsApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -468,7 +480,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = development.olegstv.KinopoiskFilmsApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

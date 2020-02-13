@@ -88,7 +88,6 @@ class FilmCell: UITableViewCell {
         // original
 //        originalLabel.height(labelHeight)
         originalLabel.width(300)
-//        originalLabel.topToBottom(of: localLabel, offset: 16, isActive: true)
         originalLabel.bottom(to: viewContainer, offset: -16,  isActive: true)
         originalLabel.leading(to: viewContainer, offset: 16, isActive: true)
     }

@@ -11,36 +11,81 @@ import TinyConstraints
 class RootViewController: UITableViewController {
     
     /// Films grouped by years
-    var films: [[Film]] = []
+    var filmsArray: [[Film]] = []
     var selectedFilm: Film!
+    var isRefreshing = false
+    
     
     let repository = Repository(apiClient: APIClient())
+    
+    lazy var spinner: UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView(style: .gray)
+        self.view.addSubview(spinner)
+        spinner.centerInSuperview()
+        
+        return spinner
+    }()
+    
+    lazy var refreshContol: UIRefreshControl = {
+        let control = UIRefreshControl()
+        control.tintColor = .gray
+        return control
+    }()
     
     // MARK: - ViewController Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         loadData()
+        startSpinner()
+        setupNavigationBarLabels()
+        setupRefreshControl()
         setupTableView()
-    
+        registerTableCells()
+        loadFilms()
     }
     
-    fileprivate func loadData() {
-            repository.getFilms { (result) in
-                switch result {
-                case .success(let items):
-                    if let items = items["films"] {
-                        self.films = self.groupByYears(items)
-                        DispatchQueue.main.async {
-                            self.tableView.reloadData()
-                        }
-                        
-                    }
-                case .failure(let error):
-                    print("\(self) retrive error on get films: \(error)")
+    fileprivate func startSpinner() {
+        spinner.startAnimating()
+    }
+    
+    fileprivate func stopSpinner() {
+        spinner.stopAnimating()
+    }
+    
+    fileprivate func showAlert()  {
+        let alertContoller = UIAlertController.alert(title: "Internet Connection Error", message: "Would you like to try again?") {
+            self.loadFilms()
+        }
+        self.present(alertContoller, animated: true, completion: nil)
+    }
+    
+    // MARK: - Network
+    
+    fileprivate func loadFilms() {
+        if isRefreshing {
+            filmsArray.removeAll()
+        }
+        repository.getFilms { (result) in
+            switch result {
+            case .success(let items):
+                if let items = items["films"] {
+                    self.filmsArray = self.groupByYears(items)
+                    
                 }
+                
+                DispatchQueue.main.async {
+                    self.stopSpinner()
+                    self.tableView.reloadData()
+                    self.refreshControl?.endRefreshing()
+                }
+            case .failure(let error):
+                print("\(self) retrive error on get films: \(error)")
+                self.showAlert()
+                self.stopSpinner()
+                self.refreshControl?.endRefreshing()
             }
         }
+    }
     
     fileprivate func groupByYears(_ films: [Film]) -> [[Film]]{
         var grouped: [[Film]] = []
@@ -62,37 +107,49 @@ class RootViewController: UITableViewController {
         return grouped
     }
     
-
+    // MARK: - Table View Support
     
     fileprivate func setupTableView() {
-        navigationItem.title = "Films"
-        tableView.delegate = self
-        tableView.dataSource = self
+        tableView.tableFooterView = UIView()
         tableView.separatorStyle = .none
         tableView.rowHeight = UITableView.automaticDimension
-        //        tableView.rowHeight = FilmCell.rowHeightSize
         tableView.estimatedRowHeight = FilmCell.rowHeightSize
         tableView.clipsToBounds = true
         tableView.isOpaque = true
-        
-        
+    }
+    
+    fileprivate func setupNavigationBarLabels() {
+        navigationItem.title = "Films"
+    }
+    
+    fileprivate func registerTableCells() {
         tableView.register(FilmCell.self, forCellReuseIdentifier: FilmCell.reuseIdentifier)
     }
     
+    // MARK: - Refresh control support
     
-    // MARK: - TableView delegate protocol implemetation
+    fileprivate func setupRefreshControl() {
+        extendedLayoutIncludesOpaqueBars = true
+        refreshContol.addTarget(self, action: #selector(reloadFilms), for: .valueChanged)
+        tableView.refreshControl = refreshContol
+    }
+    
+    @objc fileprivate func reloadFilms() {
+        isRefreshing = true
+        loadFilms()
+    }
+    
+    // MARK: - Table View Delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let filmDetailVc = FilmDetailViewController()
-        let filmSelected = films[indexPath.section][indexPath.row]
+        let filmSelected = filmsArray[indexPath.section][indexPath.row]
         tableView.deselectRow(at: indexPath, animated: false)
         filmDetailVc.film = filmSelected
         
         navigationController?.pushViewController(filmDetailVc, animated: true)
     }
-    
-    
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return FilmCell.sectionHeightSize
@@ -101,11 +158,14 @@ class RootViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = BaseLabel(text: "Section: \(section)")
         
-        if let film = films[section].first {
-            header.text = String(film.year)
-            header.textAlignment = .center
-        }
         
+        if !filmsArray.isEmpty {
+            
+            if let film = filmsArray[section].first {
+                header.text = String(film.year)
+                header.textAlignment = .center
+            }
+        }
         let headerContainer = BaseView(backgroundColor: .white)
         let labelContainer = BaseView(backgroundColor: #colorLiteral(red: 0.2588235294, green: 0.2588235294, blue: 0.2588235294, alpha: 1))
         
@@ -119,16 +179,16 @@ class RootViewController: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return films.count
+        return filmsArray.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return films[section].count
+        return filmsArray[section].count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: FilmCell.reuseIdentifier, for: indexPath) as? FilmCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: FilmCell.reuseIdentifier, for: indexPath) as? FilmCell 
             else {
                 fatalError("""
                     Expected \(FilmCell.self) type for reuseIdentifier \(FilmCell.reuseIdentifier).
@@ -136,7 +196,7 @@ class RootViewController: UITableViewController {
                 )
         }
         
-        cell.film = films[indexPath.section][indexPath.row]
+        cell.film = filmsArray[indexPath.section][indexPath.row]
         
         return cell
     }

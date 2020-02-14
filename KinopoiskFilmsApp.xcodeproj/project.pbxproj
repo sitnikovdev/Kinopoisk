@@ -23,7 +23,7 @@
 		7CA429B223F603D500E4FC96 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA429B123F603D500E4FC96 /* Resource.swift */; };
 		7CA429B423F6045A00E4FC96 /* URLRequest+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA429B323F6045A00E4FC96 /* URLRequest+.swift */; };
 		7CA429B623F606C100E4FC96 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA429B523F606C100E4FC96 /* Repository.swift */; };
-		7CFE96EF23F3CB630096D58E /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFE96EE23F3CB630096D58E /* Alert.swift */; };
+		7CA429BA23F679FC00E4FC96 /* UIAlertController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA429B923F679FC00E4FC96 /* UIAlertController+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,7 +45,7 @@
 		7CA429B123F603D500E4FC96 /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		7CA429B323F6045A00E4FC96 /* URLRequest+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+.swift"; sourceTree = "<group>"; };
 		7CA429B523F606C100E4FC96 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
-		7CFE96EE23F3CB630096D58E /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		7CA429B923F679FC00E4FC96 /* UIAlertController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+.swift"; sourceTree = "<group>"; };
 		A5A7DFF6F0AA7F0844FE8515 /* Pods-KinopoiskFilmsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KinopoiskFilmsApp.debug.xcconfig"; path = "Target Support Files/Pods-KinopoiskFilmsApp/Pods-KinopoiskFilmsApp.debug.xcconfig"; sourceTree = "<group>"; };
 		FB027406C61728ED51AB48CE /* Pods-KinopoiskFilmsApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KinopoiskFilmsApp.release.xcconfig"; path = "Target Support Files/Pods-KinopoiskFilmsApp/Pods-KinopoiskFilmsApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -133,27 +133,19 @@
 				7CFE96ED23F34B9F0096D58E /* AppDelegate */,
 				7C28A35623ECFC1D001EC68E /* Networking */,
 				7CA429B723F616FE00E4FC96 /* UI */,
-				7C94FC1F23EB0F5E00D55670 /* Resources */,
-				7C94FC0F23EAE86D00D55670 /* Info.plist */,
-			);
-			path = KinopoiskFilmsApp;
-			sourceTree = "<group>";
-		};
-		7C94FC1F23EB0F5E00D55670 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
+				7CA429B823F6175B00E4FC96 /* Support */,
 				7C94FC0A23EAE86D00D55670 /* Assets.xcassets */,
 				7C94FC1923EAF9BC00D55670 /* Colors.xcassets */,
 				7C94FC0C23EAE86D00D55670 /* LaunchScreen.storyboard */,
+				7C94FC0F23EAE86D00D55670 /* Info.plist */,
 			);
-			path = Resources;
+			path = KinopoiskFilmsApp;
 			sourceTree = "<group>";
 		};
 		7CA429B723F616FE00E4FC96 /* UI */ = {
 			isa = PBXGroup;
 			children = (
 				7C28A35323ECFBC7001EC68E /* ViewControllers */,
-				7CA429B823F6175B00E4FC96 /* Support */,
 				7C28A35723ECFC68001EC68E /* Views */,
 				7C28A35423ECFBF3001EC68E /* Cells */,
 			);
@@ -163,7 +155,7 @@
 		7CA429B823F6175B00E4FC96 /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				7CFE96EE23F3CB630096D58E /* Alert.swift */,
+				7CA429B923F679FC00E4FC96 /* UIAlertController+.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -310,9 +302,9 @@
 			files = (
 				7C94FC1623EAF3E300D55670 /* FilmCell.swift in Sources */,
 				7C94FC2323EB151C00D55670 /* BaseLabel.swift in Sources */,
+				7CA429BA23F679FC00E4FC96 /* UIAlertController+.swift in Sources */,
 				7C94FC1E23EB0E2C00D55670 /* RootViewController.swift in Sources */,
 				7C94FC2723EB283800D55670 /* FilmDetailViewController.swift in Sources */,
-				7CFE96EF23F3CB630096D58E /* Alert.swift in Sources */,
 				7C28A34C23EBE80F001EC68E /* BaseImage.swift in Sources */,
 				7C94FC0723EAE86C00D55670 /* AppDelegate.swift in Sources */,
 				7CA429B423F6045A00E4FC96 /* URLRequest+.swift in Sources */,

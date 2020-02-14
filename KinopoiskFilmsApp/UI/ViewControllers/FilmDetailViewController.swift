@@ -83,8 +83,7 @@ class FilmDetailViewController: UIViewController {
                     }
                 } else {
                     DispatchQueue.main.async {
-                        Alert.show(on: self!, with: "Resource not found", message: "Unable to load film picture.")
-                        self?.pictureImage.image = #imageLiteral(resourceName: "no_image.jpg")
+                        self?.showAlert()
                     }
                 }
             }
@@ -155,6 +154,14 @@ class FilmDetailViewController: UIViewController {
         descriptionLabel.bottom(to: mainContainer)
         
         descriptionLabel.setCompressionResistance(.required, for: .vertical)
+    }
+    
+    fileprivate func showAlert() {
+        let alert = UIAlertController.alert(title: "Image can't  be found", message: "Unable to load image ", isCanceled: false, {
+            self.pictureImage.image = #imageLiteral(resourceName: "no_image.jpg")
+        })
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     

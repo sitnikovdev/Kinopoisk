@@ -12,7 +12,12 @@ final class APIClient {
     
     func load(_ resource: Resource, result: @escaping ((Result<Data, Error>) -> Void)) {
         let request = URLRequest(resource)
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        let configuration = URLSessionConfiguration.default
+//        configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
+        
+        let filmSession = URLSession(configuration: configuration)
+        
+        let task = filmSession.dataTask(with: request) { (data, response, error) in
             guard let `data` = data else {
                 result(.failure(APIClientError.noData))
                 return

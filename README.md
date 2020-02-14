@@ -1,4 +1,4 @@
-# KinopoiskFilmsApp
+# Kinopoisk
 
 Задание
 ---

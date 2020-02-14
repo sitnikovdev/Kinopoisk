@@ -1,7 +1,7 @@
 //
 //  BaseImage.swift
 //  KinopoiskFilmsApp
-//
+//0
 //  Created by Oleg Sitnikov on 06.02.2020.
 //  Copyright © 2020 Oleg Sitnikov. All rights reserved.
 //

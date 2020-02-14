@@ -17,4 +17,15 @@ struct Film: Decodable  {
     let imageUrl: String? 
     let description: String?
     let genres: [String] = []
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case localizedName = "localized_name"
+        case name
+        case year
+        case rating
+        case imageUrl = "image_url"
+        case description
+        case genres
+    }
 }

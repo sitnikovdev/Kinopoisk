@@ -10,61 +10,62 @@ import TinyConstraints
 
 class RootViewController: UITableViewController {
     
-    
-    // MARK: - Constants
-    let filmData = FilmsData()
-    
-    // MARK: - Properties
     /// Films grouped by years
     var films: [[Film]] = []
     var selectedFilm: Film!
     
+    let repository = Repository(apiClient: APIClient())
     
     // MARK: - ViewController Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        navigationItem.title = "Films"
-        startNetMonitor()
+         loadData()
         setupTableView()
-        loadData()
-        tableView.reloadData()
-        
-        
-        
-        NetStatus.shared.netStatusChangeHandler = {
-            DispatchQueue.main.async {
-                [ unowned self ] in
-                if !NetStatus.shared.isConnected {
-                    self.showAlert()
-                }
-                self.tableView.reloadData()
-                self.loadData()
-            }
-        }
-    }
     
-    func showAlert() {
-        DispatchQueue.main.async {
-            Alert.show(on: self, with: "Остутствует подлючение", message: "Не возможно загрузить ресурс.")
-        }
-    }
-    
-    func startNetMonitor() {
-        if !NetStatus.shared.isMonitoring {
-            NetStatus.shared.startMonitoring()
-        } else {
-            NetStatus.shared.stopMonitoring()
-        }
     }
     
     fileprivate func loadData() {
-        self.films = self.filmData.films
+            repository.getFilms { (result) in
+                switch result {
+                case .success(let items):
+                    if let items = items["films"] {
+                        self.films = self.groupByYears(items)
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
+                        
+                    }
+                case .failure(let error):
+                    print("\(self) retrive error on get films: \(error)")
+                }
+            }
+        }
+    
+    fileprivate func groupByYears(_ films: [Film]) -> [[Film]]{
+        var grouped: [[Film]] = []
+        let groupByYear: [Int : [Film]] = Dictionary(grouping: films) { $0.year }
+        
+        let sortedYears = groupByYear.keys.sorted()
+        
+        sortedYears.forEach {(key) in
+            let films = groupByYear[key]
+            let orderByRating = films?.sorted(by: { (lhs, rhs) -> Bool in
+                if  let lhsRating = lhs.rating, let rhsRating = rhs.rating
+                {
+                    return rhsRating < lhsRating
+                }
+                return false
+            })
+            grouped.append(orderByRating ?? [])
+        }
+        return grouped
     }
     
+
+    
     fileprivate func setupTableView() {
-        
+        navigationItem.title = "Films"
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
@@ -77,7 +78,6 @@ class RootViewController: UITableViewController {
         
         tableView.register(FilmCell.self, forCellReuseIdentifier: FilmCell.reuseIdentifier)
     }
-    
     
     
     // MARK: - TableView delegate protocol implemetation

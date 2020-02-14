@@ -119,7 +119,7 @@ class RootViewController: UITableViewController {
     }
     
     fileprivate func setupNavigationBarLabels() {
-        navigationItem.title = "Films"
+        navigationItem.title = "Фильмы"
     }
     
     fileprivate func registerTableCells() {
@@ -156,7 +156,7 @@ class RootViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = BaseLabel(text: "Section: \(section)")
+        let header = BaseLabel(backgroundColor: #colorLiteral(red: 0.7176470588, green: 0.7176470588, blue: 0.7176470588, alpha: 1), text: "Section: \(section)", font: .boldSystemFont(ofSize: 22), borderWidth: 0)
         
         
         if !filmsArray.isEmpty {
@@ -166,8 +166,8 @@ class RootViewController: UITableViewController {
                 header.textAlignment = .center
             }
         }
-        let headerContainer = BaseView(backgroundColor: .white)
-        let labelContainer = BaseView(backgroundColor: #colorLiteral(red: 0.2588235294, green: 0.2588235294, blue: 0.2588235294, alpha: 1))
+        let headerContainer = BaseView(backgroundColor: .white, borderWidth: 0)
+        let labelContainer = BaseView(backgroundColor: #colorLiteral(red: 0.7176470588, green: 0.7176470588, blue: 0.7176470588, alpha: 1), borderWidth: 2)
         
         labelContainer.addSubview(header)
         headerContainer.addSubview(labelContainer)

@@ -1,14 +1,16 @@
 //
-//  BaseLabel.swift
+//  TextBaseLabel.swift
 //  KinopoiskFilmsApp
 //
-//  Created by Oleg Sitnikov on 05.02.2020.
+//  Created by Oleg Sitnikov on 14.02.2020.
 //  Copyright © 2020 Oleg Sitnikov. All rights reserved.
 //
 
 import UIKit
 
-class BaseLabel: UILabel {
+
+class TextBaseLabel: UILabel {
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,10 +27,18 @@ class BaseLabel: UILabel {
         self.font = font
         self.text = text
         self.textColor = textColor
+
     }
     
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+     
+
+    override func drawText(in rect: CGRect) {
+           let insets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)//CGRect.inset(by:)
+           super.drawText(in: rect.inset(by: insets))
+       }
 }

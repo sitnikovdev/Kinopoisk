@@ -10,36 +10,39 @@ import TinyConstraints
 
 class FilmCell: UITableViewCell {
     
-// MARK: - Properties
-     var film: Film! {
+    // MARK: - Properties
+    var film: Film! {
         didSet {
-            localLabel.text = "\(film.localizedName) / \(film.year)"
+            localLabel.text = "\(film.localizedName)"
             originalLabel.text = "\(film.name)"
             if let rating = film.rating {
-              ratingLabel.text = "\(rating)"
+                ratingLabel.text = "\(rating)"
             } else {
                 ratingLabel.text = ""
             }
-            setRating()
+            if let rating: Double = film.rating {
+                ratingLabel.textColor = Utils.setColorForRating(rating)
+            }
         }
     }
     
-//    let films = FilmsData.films
+    //    let films = FilmsData.films
     let labelHeight: CGFloat = 30
     
     static let reuseIdentifier = "FilmCell"
-    static let sectionHeightSize: CGFloat = 50
+    static let sectionHeightSize: CGFloat = 60
     static let rowHeightSize: CGFloat = 150
     
-// MARK: - UI Views
-    let viewContainer = BaseView(backgroundColor: #colorLiteral(red: 0.1294117647, green: 0.5882352941, blue: 0.9529411765, alpha: 1))
+    // MARK: - UI Views
+    let viewContainer = BaseView(backgroundColor: #colorLiteral(red: 0.8117647059, green: 0.8862745098, blue: 0.9529411765, alpha: 1))
     
-    let localLabel = BaseLabel(backgroundColor:#colorLiteral(red: 1, green: 0.5960784314, blue: 0, alpha: 1), text: "Бойцовский клуб")
-    let ratingLabel = BaseLabel(backgroundColor: #colorLiteral(red: 0.2980392157, green: 0.6862745098, blue: 0.3137254902, alpha: 1), text: "8.934")
-    let originalLabel = BaseLabel(backgroundColor: #colorLiteral(red: 0.9568627451, green: 0.262745098, blue: 0.2117647059, alpha: 1), text: "Fight Club", textColor: .white)
+    let localLabel = BaseLabel(backgroundColor:#colorLiteral(red: 0.8117647059, green: 0.8862745098, blue: 0.9529411765, alpha: 1), text: "Бойцовский клуб",  borderWidth: 0)
     
-
-// MARK: - Initializers
+    let ratingLabel = BaseLabel(backgroundColor: #colorLiteral(red: 0.8117647059, green: 0.8862745098, blue: 0.9529411765, alpha: 1), text: "8.934",  borderWidth: 0)
+    let originalLabel = BaseLabel(backgroundColor: #colorLiteral(red: 0.8117647059, green: 0.8862745098, blue: 0.9529411765, alpha: 1), text: "Fight Club",  textColor: .systemGray, borderWidth: 0)
+    
+    
+    // MARK: - Initializers
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -51,13 +54,13 @@ class FilmCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-// MARK: - Views setup
+    // MARK: - Views setup
     
     fileprivate func setupViews() {
         addViews()
         constraintViews()
     }
-
+    
     fileprivate func addViews() {
         contentView.addSubview(viewContainer)
         // local
@@ -73,40 +76,31 @@ class FilmCell: UITableViewCell {
         viewContainer.edges(to: contentView, insets: TinyEdgeInsets(top: 5, left: 16, bottom: 5, right: 16))
         
         // local
-//        localLabel.height(labelHeight)
-        localLabel.width(300)
+        
+        localLabel.font = UIFont.preferredFont(forTextStyle: .headline)
+        localLabel.adjustsFontForContentSizeCategory = true
+        //        localLabel.height(labelHeight)
+        localLabel.width(250)
         localLabel.top(to: viewContainer, offset: 16, isActive: true)
         localLabel.bottomToTop(of: originalLabel, offset: -32, isActive: true)
         localLabel.leading(to: viewContainer, offset: 16, isActive: true)
         
         // rating
+        ratingLabel.font = UIFont.preferredFont(forTextStyle: .headline)
+        ratingLabel.adjustsFontForContentSizeCategory = true
+        
         ratingLabel.height(labelHeight)
         ratingLabel.trailing(to: viewContainer, offset: -16)
         ratingLabel.top(to: viewContainer, offset: 16)
         
         
         // original
-//        originalLabel.height(labelHeight)
+        //        originalLabel.height(labelHeight)
         originalLabel.width(300)
         originalLabel.bottom(to: viewContainer, offset: -16,  isActive: true)
         originalLabel.leading(to: viewContainer, offset: 16, isActive: true)
     }
     
-    fileprivate func setRating() {
-        // Set colorized film rating
-        if let rating: Double = film.rating {
-        switch rating {
-        case    7...: // from 7 and higher - #007b00
-                ratingLabel.backgroundColor = #colorLiteral(red: 0, green: 0.4823529412, blue: 0, alpha: 1)
-            case 5...6: // from 5 to 6 inclusive - #5f5f5f
-                ratingLabel.backgroundColor = #colorLiteral(red: 0.3725490196, green: 0.3725490196, blue: 0.3725490196, alpha: 1)
-            case 0..<5: // below 5 - #ff0b0b
-                ratingLabel.backgroundColor = #colorLiteral(red: 1, green: 0.0431372549, blue: 0.0431372549, alpha: 1)
-            default:
-                // From 6 to 7 - undefined, set default color
-                ratingLabel.backgroundColor = #colorLiteral(red: 0.3999555707, green: 0.4000248015, blue: 0.1652560234, alpha: 1)
-            }
-        }
-    }
+    
     
 }

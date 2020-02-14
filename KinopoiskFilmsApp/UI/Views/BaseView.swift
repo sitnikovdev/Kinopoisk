@@ -19,7 +19,7 @@ class BaseView: UIView {
         self.backgroundColor = backgroundColor
         layer.cornerRadius = cornerRadius
         layer.borderWidth = borderWidth
-        layer.borderColor = UIColor.white.cgColor
+        layer.borderColor = UIColor.black.cgColor
         layer.masksToBounds = true
     }
     

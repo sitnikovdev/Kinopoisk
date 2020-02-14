@@ -14,9 +14,18 @@ class FilmDetailViewController: UIViewController {
         didSet {
             navigationItem.title = "\(film.localizedName)"
             originalLabel.text = "\(film.name)"
-            yearLabel.text = "\(film.year)"
+            yearLabel.text = "Год: \(film.year)"
+            
             if let rating = film.rating {
-                ratingLabel.text = "\(rating)"
+                let textColor = Utils.setColorForRating(rating)
+                let firstAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+                let secondAttributes = [NSAttributedString.Key.foregroundColor: textColor]
+                
+                let firstString = NSMutableAttributedString(string: "Рейтинг: ", attributes: firstAttributes)
+                let secondString = NSAttributedString(string: String(rating), attributes: secondAttributes)
+                
+                firstString.append(secondString)
+                ratingLabel.attributedText = firstString
             } else {
                 ratingLabel.text = ""
             }
@@ -25,6 +34,7 @@ class FilmDetailViewController: UIViewController {
             } else {
                 descriptionLabel.text = ""
             }
+            
             if let imageUrl = film.imageUrl {
                 if let url = URL(string: imageUrl) {
                   loadImageFrom(url: url)
@@ -41,34 +51,41 @@ class FilmDetailViewController: UIViewController {
     // scroll view
     lazy var scrollView: UIScrollView = {
         let view = UIScrollView(frame: .zero)
-        view.backgroundColor = #colorLiteral(red: 0.9568627451, green: 0.262745098, blue: 0.2117647059, alpha: 1)
+        view.backgroundColor = .white
         view.frame = self.view.bounds
-        //        view.contentSize = self.contentViewSize
+        
         return view
     }()
     
     // containers
     lazy var mainContainer: BaseView = {
-        let view = BaseView(backgroundColor: #colorLiteral(red: 0.6117647059, green: 0.1529411765, blue: 0.6901960784, alpha: 1))
+        let view = BaseView(backgroundColor: .white, borderWidth: 0)
         view.frame.size = self.contentViewSize
         
         return view
     }()
     
     
-    let topGroupContainer = BaseView(backgroundColor:#colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1))
-    let bottomContainer = BaseView(backgroundColor:#colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1))
-    let leftTopContainer = BaseView(backgroundColor: #colorLiteral(red: 0.1294117647, green: 0.5882352941, blue: 0.9529411765, alpha: 1))
-    let rightTopContainer = BaseView(backgroundColor: #colorLiteral(red: 1, green: 0.5960784314, blue: 0, alpha: 1))
+    let topGroupContainer = BaseView(backgroundColor:.white, borderWidth: 0)
+    let bottomContainer = BaseView(backgroundColor:.white, borderWidth: 0)
+    let leftTopContainer = BaseView(backgroundColor: .white, borderWidth: 0)
+    let rightTopContainer = BaseView(backgroundColor: .white, borderWidth: 0)
     // views
     let pictureImage = BaseImage(#imageLiteral(resourceName: "no_image.jpg"))
-    let originalLabel = BaseLabel(backgroundColor: #colorLiteral(red: 0.2588235294, green: 0.2588235294, blue: 0.2588235294, alpha: 1), text: "Fight Club", textColor: .white)
-    let yearLabel = BaseLabel(backgroundColor: #colorLiteral(red: 0.6117647059, green: 0.1529411765, blue: 0.6901960784, alpha: 1), text: "Год: 1994", textColor: .white)
-    let ratingLabel = BaseLabel(backgroundColor: #colorLiteral(red: 0.2980392157, green: 0.6862745098, blue: 0.3137254902, alpha: 1), text: "Рейтинг: 8.233", textColor: .white)
-    let descriptionLabel = BaseLabel(backgroundColor: #colorLiteral(red: 0.2588235294, green: 0.2588235294, blue: 0.2588235294, alpha: 1), text: "",
-                                     textColor: .white,
-                                     font: .systemFont(ofSize: 22)
+
+     let originalLabel = TextBaseLabel(backgroundColor: .white, text: "",
+     textColor: .gray,
+     font: .systemFont(ofSize: 15)
     )
+ 
+    
+    let yearLabel = BaseLabel(backgroundColor: .white, text: "Год: 1994", textColor: .black, font: .systemFont(ofSize: 22))
+    let ratingTitle = BaseLabel(backgroundColor: .white, text: "Рейтинг: ", textColor: .black, font: .systemFont(ofSize: 22))
+    let ratingLabel = BaseLabel(backgroundColor: .white, text: "Рейтинг: 8.233", textColor: .black, font: .systemFont(ofSize: 22))
+    var descriptionLabel = TextBaseLabel(backgroundColor: .white, text: "",
+                                     textColor: .black,
+                                     font: .systemFont(ofSize: 22)
+      )
     
     
     
@@ -136,28 +153,31 @@ class FilmDetailViewController: UIViewController {
         
         
         // original
-        originalLabel.height(25)
-        originalLabel.top(to: pictureImage, offset: 0)
+        originalLabel.top(to: rightTopContainer, offset: 20)
+        originalLabel.left(to: rightTopContainer, offset: 0)
+        originalLabel.right(to: rightTopContainer)
+        
         
         // year
         yearLabel.height(25)
-        yearLabel.top(to: originalLabel, offset: 32)
+        yearLabel.left(to: rightTopContainer, offset: 8)
+        yearLabel.topToBottom(of: originalLabel, offset: 10)
         
         // rating
         ratingLabel.height(25)
-        ratingLabel.top(to: yearLabel, offset: 32)
+        ratingLabel.left(to: rightTopContainer, offset: 8)
+        ratingLabel.topToBottom(of: yearLabel, offset: 10)
         
-        // film description text
         descriptionLabel.topToBottom(of: topGroupContainer, offset: 16)
-        descriptionLabel.left(to: mainContainer, offset: 16)
-        descriptionLabel.right(to: mainContainer, offset: -16)
+        descriptionLabel.left(to: mainContainer, offset: 15)
+        descriptionLabel.right(to: mainContainer, offset: -15)
         descriptionLabel.bottom(to: mainContainer)
+ 
         
-        descriptionLabel.setCompressionResistance(.required, for: .vertical)
     }
     
     fileprivate func showAlert() {
-        let alert = UIAlertController.alert(title: "Image can't  be found", message: "Unable to load image ", isCanceled: false, {
+        let alert = UIAlertController.alert(title: "Ресурс не найден", message: "Не возможно загрузить изображение", isCanceled: false, {
             self.pictureImage.image = #imageLiteral(resourceName: "no_image.jpg")
         })
         

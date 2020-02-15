@@ -16,8 +16,6 @@ final class APIClient {
     func load(_ resource: Resource, result: @escaping ((responseAPIResult) -> Void)) {
         let request = URLRequest(resource)
         let configuration = URLSessionConfiguration.default
-//        configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
-        
         let filmSession = URLSession(configuration: configuration)
         
         let task = filmSession.dataTask(with: request) { (data, response, error) in

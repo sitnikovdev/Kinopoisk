@@ -9,6 +9,7 @@
 import TinyConstraints
 
 class FilmDetailViewController: UIViewController {
+    // MARK: - Proprerties
     
     var film: Film! {
         didSet {
@@ -17,7 +18,7 @@ class FilmDetailViewController: UIViewController {
             yearLabel.text = "Год: \(film.year)"
             
             if let rating = film.rating {
-                let textColor = Utils.setColorForRating(rating)
+                let textColor = film.setColorForRating()
                 let firstAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
                 let secondAttributes = [NSAttributedString.Key.foregroundColor: textColor]
                 let firstString = NSMutableAttributedString(string: "Рейтинг: ", attributes: firstAttributes)
@@ -36,10 +37,17 @@ class FilmDetailViewController: UIViewController {
             
             if let imageUrl = film.imageUrl {
                 if let url = URL(string: imageUrl) {
-                    loadImageFrom(url: url)
+                    ImageService.shared.getImage(withURL: url) { result in
+                        switch result {
+                        case .success(let image):
+                            self.pictureImage.image = image
+                        case .failure(let error):
+                            self.showAlertWithError(error)
+                            self.pictureImage.image = #imageLiteral(resourceName: "no_image.jpg")
+                        }
+                    }
                 }
             }
-            
         }
     }
     
@@ -49,14 +57,12 @@ class FilmDetailViewController: UIViewController {
         let view = UIScrollView(frame: .zero)
         view.backgroundColor = .white
         view.frame = self.view.bounds
-        
         return view
     }()
     
     lazy var mainContainer: BaseView = {
         let view = BaseView()
         view.frame.size = self.contentViewSize
-
         return view
     }()
     
@@ -65,7 +71,7 @@ class FilmDetailViewController: UIViewController {
     let leftTopContainer = BaseView()
     let rightTopContainer = BaseView()
     let pictureImage = BaseImage(#imageLiteral(resourceName: "no_image.jpg"))
-    let originalLabel = BaseTextLabel(textColor: .systemGray, leftContentOffset: 8)
+    let originalLabel = BaseTextLabel(textColor: #colorLiteral(red: 0.4980392157, green: 0.5215686275, blue: 0.537254902, alpha: 1), leftContentOffset: 8)
     let yearLabel = BaseTextLabel()
     let ratingTitle = BaseTextLabel()
     let ratingLabel = BaseTextLabel()
@@ -102,60 +108,33 @@ class FilmDetailViewController: UIViewController {
         mainContainer.edges(to: scrollView, insets: TinyEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), isActive: true)
         topGroupContainer.edges(to: mainContainer, excluding: .bottom, insets: TinyEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), isActive: true)
         topGroupContainer.stack([leftTopContainer, rightTopContainer], axis: .horizontal, width: mainContainer.frame.width / 2, height: nil,  spacing: 0)
-        
         // picture
         pictureImage.edges(to: leftTopContainer,  insets: TinyEdgeInsets(top: 16, left: 16, bottom: 16, right: 16),  isActive: true)
         pictureImage.aspectRatio(2/3)
-        
         // original
         originalLabel.top(to: rightTopContainer, offset: 20)
         originalLabel.left(to: rightTopContainer, offset: 0)
         originalLabel.right(to: rightTopContainer)
         originalLabel.font = .preferredFont(forTextStyle: .subheadline)
-        
         // year
         yearLabel.left(to: rightTopContainer, offset: 8)
         yearLabel.topToBottom(of: originalLabel, offset: 10)
-        yearLabel.font = .preferredFont(forTextStyle: .headline)
-        
+        yearLabel.font = .preferredFont(forTextStyle: .title3)
         // rating
         ratingLabel.left(to: rightTopContainer, offset: 8)
         ratingLabel.topToBottom(of: yearLabel, offset: 10)
-        ratingLabel.font = .preferredFont(forTextStyle: .headline)
-        
-        descriptionLabel.topToBottom(of: topGroupContainer, offset: 16)
-        descriptionLabel.left(to: mainContainer, offset: 15)
-        descriptionLabel.right(to: mainContainer, offset: -15)
+        ratingLabel.font = .preferredFont(forTextStyle: .title3)
+        descriptionLabel.topToBottom(of: topGroupContainer, offset: 0)
+        descriptionLabel.left(to: mainContainer, offset: 16)
+        descriptionLabel.right(to: mainContainer, offset: -16)
         descriptionLabel.bottom(to: mainContainer)
         descriptionLabel.font = .preferredFont(forTextStyle: .body)
     }
    
     // MARK: - Support methods
     
-    fileprivate func showAlert() {
-        let alert = UIAlertController.alert(title: "Ресурс не найден", message: "Не возможно загрузить изображение", isCanceled: false, {
-            self.pictureImage.image = #imageLiteral(resourceName: "no_image.jpg")
-        })
+    fileprivate func showAlertWithError(_ error: Error) {
+        let alert = UIAlertController.alert(title: "Ресурс не найден", message: "\(error.localizedDescription)")
         self.present(alert, animated: true, completion: nil)
     }
-    
-    fileprivate func loadImageFrom(url: URL) {
-           DispatchQueue.global().async {
-               [weak self] in
-               if let data = try? Data(contentsOf: url) {
-                   if let image = UIImage(data: data) {
-                       DispatchQueue.main.async {
-                           self?.pictureImage.image = image
-                       }
-                   }
-               } else {
-                   DispatchQueue.main.async {
-                       self?.showAlert()
-                   }
-               }
-           }
-       }
-    
 }
-
-

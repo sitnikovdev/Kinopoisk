@@ -14,5 +14,4 @@ extension URLRequest {
         self.init(url: resource.url)
         self.httpMethod = resource.method
     }
-    
 }

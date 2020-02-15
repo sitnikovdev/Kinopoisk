@@ -16,7 +16,7 @@ class BaseTextLabel: UILabel {
         super.init(frame: frame)
     }
     
-    init(backgroundColor: UIColor = .white, text: String = "", textColor: UIColor = .black, font: UIFont = .systemFont(ofSize: 10), cornerRadius: CGFloat = 6, borderWidth: CGFloat = 0, leftContentOffset: CGFloat = 0) {
+    init(backgroundColor: UIColor = .white, text: String = "", textColor: UIColor = .black, font: UIFont = .systemFont(ofSize: 10), cornerRadius: CGFloat = 0, borderWidth: CGFloat = 0, leftContentOffset: CGFloat = 0) {
         super.init(frame: .zero)
         self.backgroundColor = backgroundColor
         layer.cornerRadius = cornerRadius

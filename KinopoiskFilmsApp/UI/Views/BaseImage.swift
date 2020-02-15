@@ -11,13 +11,12 @@ import UIKit
 class BaseImage: UIImageView {
     var isLoaded = false
     
-    init(_ image: UIImage, backgroundColor: UIColor = .purple,   cornerRadius: CGFloat = 0 ) {
+    init(_ image: UIImage, backgroundColor: UIColor = .white, cornerRadius: CGFloat = 0 ) {
         super.init(frame: .zero)
         self.backgroundColor = backgroundColor
         layer.cornerRadius = cornerRadius
         self.clipsToBounds = true
-        self.isOpaque = true 
-        
+        self.isOpaque = true
         self.image = image
     }
     

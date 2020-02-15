@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		04F09A2EDCF80FA31627F71A /* Pods_KinopoiskFilmsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 225F7F38D2F6E02AE5183301 /* Pods_KinopoiskFilmsApp.framework */; };
 		7C142A0123F7C0F6003E67D2 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C142A0023F7C0F6003E67D2 /* ImageService.swift */; };
+		7C142A0623F7DEFE003E67D2 /* NetStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C142A0523F7DEFE003E67D2 /* NetStatus.swift */; };
+		7C142A0823F7E4EE003E67D2 /* APIClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C142A0723F7E4EE003E67D2 /* APIClientError.swift */; };
 		7C28A34C23EBE80F001EC68E /* BaseImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C28A34B23EBE80F001EC68E /* BaseImage.swift */; };
 		7C94FC0723EAE86C00D55670 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94FC0623EAE86C00D55670 /* AppDelegate.swift */; };
 		7C94FC0B23EAE86D00D55670 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C94FC0A23EAE86D00D55670 /* Assets.xcassets */; };
@@ -30,6 +32,8 @@
 /* Begin PBXFileReference section */
 		225F7F38D2F6E02AE5183301 /* Pods_KinopoiskFilmsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KinopoiskFilmsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C142A0023F7C0F6003E67D2 /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
+		7C142A0523F7DEFE003E67D2 /* NetStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetStatus.swift; sourceTree = "<group>"; };
+		7C142A0723F7E4EE003E67D2 /* APIClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientError.swift; sourceTree = "<group>"; };
 		7C28A34B23EBE80F001EC68E /* BaseImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseImage.swift; sourceTree = "<group>"; };
 		7C94FC0323EAE86C00D55670 /* KinopoiskFilmsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KinopoiskFilmsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C94FC0623EAE86C00D55670 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +102,8 @@
 				7CA429B123F603D500E4FC96 /* Resource.swift */,
 				7CA429B323F6045A00E4FC96 /* URLRequest+.swift */,
 				7C142A0023F7C0F6003E67D2 /* ImageService.swift */,
+				7C142A0523F7DEFE003E67D2 /* NetStatus.swift */,
+				7C142A0723F7E4EE003E67D2 /* APIClientError.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -305,6 +311,7 @@
 			files = (
 				7C94FC1623EAF3E300D55670 /* FilmCell.swift in Sources */,
 				7C94FC2323EB151C00D55670 /* BaseTextLabel.swift in Sources */,
+				7C142A0823F7E4EE003E67D2 /* APIClientError.swift in Sources */,
 				7CA429BA23F679FC00E4FC96 /* UIAlertController+.swift in Sources */,
 				7C94FC1E23EB0E2C00D55670 /* MainViewController.swift in Sources */,
 				7C94FC2723EB283800D55670 /* FilmDetailViewController.swift in Sources */,
@@ -316,6 +323,7 @@
 				7C94FC1C23EB082800D55670 /* BaseView.swift in Sources */,
 				7C94FC2523EB276A00D55670 /* Film.swift in Sources */,
 				7CA429B223F603D500E4FC96 /* Resource.swift in Sources */,
+				7C142A0623F7DEFE003E67D2 /* NetStatus.swift in Sources */,
 				7C142A0123F7C0F6003E67D2 /* ImageService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

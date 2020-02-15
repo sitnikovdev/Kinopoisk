@@ -31,8 +31,5 @@ final class APIClient {
         }
         task.resume()
     }
-    
-    enum APIClientError: Error {
-        case noData
-    }
+
 }

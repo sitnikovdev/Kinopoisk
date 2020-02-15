@@ -10,7 +10,7 @@ import TinyConstraints
 
 class MainViewController: UITableViewController {
     // MARK: - Properties
-    
+    let appTitle = "Фильмы"
     let repository = Repository(apiClient: APIClient())
     var filmsArray: [[Film]] = []
     let sectionHeaderSize:CGFloat = 60
@@ -34,15 +34,30 @@ class MainViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        startMonitor()
         startSpinner()
         setupNavigationBarLabels()
         setupRefreshControl()
         setupTableView()
         registerTableCells()
         loadFilms()
+        
+        NetStatus.shared.netStatusChangeHandler = {
+            DispatchQueue.main.async {
+                [ unowned self ] in
+                sleep(1)
+                if !NetStatus.shared.isConnected {
+                    self.showAlert(error: APIClientError.noConnection)
+                }
+                self.tableView.reloadData()
+            }
+        }
     }
     
     // MARK: - Network
+    fileprivate func startMonitor() {
+        NetStatus.shared.startMonitoring()
+    }
     
     fileprivate func loadFilms() {
         if isRefreshing {
@@ -82,7 +97,7 @@ class MainViewController: UITableViewController {
     }
     
     fileprivate func setupNavigationBarLabels() {
-        navigationItem.title = "Фильмы"
+        navigationItem.title = appTitle
     }
     
     fileprivate func registerTableCells() {
@@ -163,7 +178,15 @@ class MainViewController: UITableViewController {
     }
     
     fileprivate func showAlert(error: Error)  {
-        let alertContoller = UIAlertController.alert(title: "Ресурс не доступен", message: "\(error.localizedDescription)")
+        var message = ""
+        switch error {
+        case APIClientError.noConnection:
+            message = "Интернет ресурс не доступен"
+        default:
+            message = "Ошибка подключения"
+        }
+        let alertContoller = UIAlertController.alert(title: "Ресурс не доступен", message: message)
+        
         self.present(alertContoller, animated: true, completion: nil)
     }
 }

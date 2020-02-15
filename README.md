@@ -4,7 +4,7 @@ iOS-приложение для отображения списка фильмо
 
 
 Описание приложения:
-==
+--
 
 https://sitnikovdev.github.io/ios-develop/swift/15/02/2020/kinopoisk
 

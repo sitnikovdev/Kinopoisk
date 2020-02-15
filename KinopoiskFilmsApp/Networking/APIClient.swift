@@ -8,9 +8,12 @@
 
 import Foundation
 
+typealias responseAPIResult = Result<Data, Error>
+
+
 final class APIClient {
     
-    func load(_ resource: Resource, result: @escaping ((Result<Data, Error>) -> Void)) {
+    func load(_ resource: Resource, result: @escaping ((responseAPIResult) -> Void)) {
         let request = URLRequest(resource)
         let configuration = URLSessionConfiguration.default
 //        configuration.requestCachePolicy = .reloadIgnoringLocalCacheData

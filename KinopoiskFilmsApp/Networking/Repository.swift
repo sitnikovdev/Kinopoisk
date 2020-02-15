@@ -8,6 +8,8 @@
 
 import Foundation
 
+typealias responseFilmsResult = Result<[String: [Film]], Error>
+
 final class Repository {
     
     private let apiClient: APIClient!
@@ -16,7 +18,7 @@ final class Repository {
         self.apiClient = apiClient
     }
     
-    func getFilms(_ completion: @escaping ((Result<[String: [Film]], Error>) -> Void)) {
+    func getFilms(_ completion: @escaping ((responseFilmsResult) -> Void)) {
         let resource = Resource(url:URL(string:"https://s3-eu-west-1.amazonaws.com/sequeniatesttask/films.json")!)
         apiClient.load(resource) { (result) in
             switch result {

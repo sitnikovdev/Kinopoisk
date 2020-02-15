@@ -14,7 +14,7 @@ class BaseView: UIView {
         super.init(frame: frame)
     }
     
-    init(backgroundColor: UIColor, cornerRadius: CGFloat = 6, borderWidth: CGFloat = 2) {
+    init(backgroundColor: UIColor, cornerRadius: CGFloat = 6, borderWidth: CGFloat = 0) {
         super.init(frame: .zero)
         self.backgroundColor = backgroundColor
         layer.cornerRadius = cornerRadius

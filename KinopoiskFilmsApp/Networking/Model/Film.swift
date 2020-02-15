@@ -29,3 +29,25 @@ struct Film: Decodable  {
         case genres
     }
 }
+
+extension Film {
+     static func groupByYears(_ films: [Film]) -> [[Film]]{
+        var grouped: [[Film]] = []
+        let groupByYear: [Int : [Film]] = Dictionary(grouping: films) { $0.year }
+        
+        let sortedYears = groupByYear.keys.sorted()
+        
+        sortedYears.forEach {(key) in
+            let films = groupByYear[key]
+            let orderByRating = films?.sorted(by: { (lhs, rhs) -> Bool in
+                if  let lhsRating = lhs.rating, let rhsRating = rhs.rating
+                {
+                    return rhsRating < lhsRating
+                }
+                return false
+            })
+            grouped.append(orderByRating ?? [])
+        }
+        return grouped
+    }
+}

@@ -10,7 +10,6 @@ import TinyConstraints
 
 class FilmCell: UITableViewCell {
     
-    // MARK: - Properties
     var film: Film! {
         didSet {
             localLabel.text = "\(film.localizedName)"
@@ -26,27 +25,23 @@ class FilmCell: UITableViewCell {
         }
     }
     
-    //    let films = FilmsData.films
-    let labelHeight: CGFloat = 30
+// MARK: - Table View Properties
     
     static let reuseIdentifier = "FilmCell"
     static let sectionHeightSize: CGFloat = 60
-    static let rowHeightSize: CGFloat = 150
+    
     
     // MARK: - UI Views
-    let viewContainer = BaseView(backgroundColor: #colorLiteral(red: 0.8117647059, green: 0.8862745098, blue: 0.9529411765, alpha: 1))
-    
-    let localLabel = BaseLabel(backgroundColor:#colorLiteral(red: 0.8117647059, green: 0.8862745098, blue: 0.9529411765, alpha: 1), text: "Бойцовский клуб",  borderWidth: 0)
-    
-    let ratingLabel = BaseLabel(backgroundColor: #colorLiteral(red: 0.8117647059, green: 0.8862745098, blue: 0.9529411765, alpha: 1), text: "8.934",  borderWidth: 0)
-    let originalLabel = BaseLabel(backgroundColor: #colorLiteral(red: 0.8117647059, green: 0.8862745098, blue: 0.9529411765, alpha: 1), text: "Fight Club",  textColor: .systemGray, borderWidth: 0)
+    let viewContainer = BaseView(backgroundColor: #colorLiteral(red: 0.8117647059, green: 0.8862745098, blue: 0.9529411765, alpha: 1), borderWidth: 1)
+    let localLabel = BaseTextLabel(backgroundColor:#colorLiteral(red: 0.8117647059, green: 0.8862745098, blue: 0.9529411765, alpha: 1))
+    let ratingLabel = BaseTextLabel(backgroundColor: #colorLiteral(red: 0.8117647059, green: 0.8862745098, blue: 0.9529411765, alpha: 1))
+    let originalLabel = BaseTextLabel(backgroundColor: #colorLiteral(red: 0.8117647059, green: 0.8862745098, blue: 0.9529411765, alpha: 1), textColor: .systemGray)
     
     
     // MARK: - Initializers
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
         setupViews()
     }
     
@@ -76,31 +71,21 @@ class FilmCell: UITableViewCell {
         viewContainer.edges(to: contentView, insets: TinyEdgeInsets(top: 5, left: 16, bottom: 5, right: 16))
         
         // local
-        
-        localLabel.font = UIFont.preferredFont(forTextStyle: .headline)
-        localLabel.adjustsFontForContentSizeCategory = true
-        //        localLabel.height(labelHeight)
         localLabel.width(250)
         localLabel.top(to: viewContainer, offset: 16, isActive: true)
         localLabel.bottomToTop(of: originalLabel, offset: -32, isActive: true)
         localLabel.leading(to: viewContainer, offset: 16, isActive: true)
+        localLabel.font = .preferredFont(forTextStyle: .headline)
         
         // rating
-        ratingLabel.font = UIFont.preferredFont(forTextStyle: .headline)
-        ratingLabel.adjustsFontForContentSizeCategory = true
-        
-        ratingLabel.height(labelHeight)
         ratingLabel.trailing(to: viewContainer, offset: -16)
         ratingLabel.top(to: viewContainer, offset: 16)
-        
+        ratingLabel.font = .preferredFont(forTextStyle: .headline)
         
         // original
-        //        originalLabel.height(labelHeight)
         originalLabel.width(300)
         originalLabel.bottom(to: viewContainer, offset: -16,  isActive: true)
         originalLabel.leading(to: viewContainer, offset: 16, isActive: true)
+        originalLabel.font = .preferredFont(forTextStyle: .subheadline)
     }
-    
-    
-    
 }

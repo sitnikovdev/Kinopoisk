@@ -16,7 +16,7 @@
 		7C94FC1A23EAF9BC00D55670 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C94FC1923EAF9BC00D55670 /* Colors.xcassets */; };
 		7C94FC1C23EB082800D55670 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94FC1B23EB082800D55670 /* BaseView.swift */; };
 		7C94FC1E23EB0E2C00D55670 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94FC1D23EB0E2C00D55670 /* RootViewController.swift */; };
-		7C94FC2323EB151C00D55670 /* BaseLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94FC2223EB151C00D55670 /* BaseLabel.swift */; };
+		7C94FC2323EB151C00D55670 /* BaseTextLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94FC2223EB151C00D55670 /* BaseTextLabel.swift */; };
 		7C94FC2523EB276A00D55670 /* Film.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94FC2423EB276A00D55670 /* Film.swift */; };
 		7C94FC2723EB283800D55670 /* FilmDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94FC2623EB283800D55670 /* FilmDetailViewController.swift */; };
 		7CA429B023F6037F00E4FC96 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA429AF23F6037F00E4FC96 /* APIClient.swift */; };
@@ -24,7 +24,6 @@
 		7CA429B423F6045A00E4FC96 /* URLRequest+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA429B323F6045A00E4FC96 /* URLRequest+.swift */; };
 		7CA429B623F606C100E4FC96 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA429B523F606C100E4FC96 /* Repository.swift */; };
 		7CA429BA23F679FC00E4FC96 /* UIAlertController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA429B923F679FC00E4FC96 /* UIAlertController+.swift */; };
-		7CF158BB23F6E254007D33F8 /* TextBaseLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF158BA23F6E254007D33F8 /* TextBaseLabel.swift */; };
 		7CF158BD23F6EFF8007D33F8 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF158BC23F6EFF8007D33F8 /* Utils.swift */; };
 /* End PBXBuildFile section */
 
@@ -40,7 +39,7 @@
 		7C94FC1923EAF9BC00D55670 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		7C94FC1B23EB082800D55670 /* BaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		7C94FC1D23EB0E2C00D55670 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
-		7C94FC2223EB151C00D55670 /* BaseLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseLabel.swift; sourceTree = "<group>"; };
+		7C94FC2223EB151C00D55670 /* BaseTextLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTextLabel.swift; sourceTree = "<group>"; };
 		7C94FC2423EB276A00D55670 /* Film.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Film.swift; sourceTree = "<group>"; };
 		7C94FC2623EB283800D55670 /* FilmDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmDetailViewController.swift; sourceTree = "<group>"; };
 		7CA429AF23F6037F00E4FC96 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
@@ -48,7 +47,6 @@
 		7CA429B323F6045A00E4FC96 /* URLRequest+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+.swift"; sourceTree = "<group>"; };
 		7CA429B523F606C100E4FC96 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		7CA429B923F679FC00E4FC96 /* UIAlertController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+.swift"; sourceTree = "<group>"; };
-		7CF158BA23F6E254007D33F8 /* TextBaseLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBaseLabel.swift; sourceTree = "<group>"; };
 		7CF158BC23F6EFF8007D33F8 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		A5A7DFF6F0AA7F0844FE8515 /* Pods-KinopoiskFilmsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KinopoiskFilmsApp.debug.xcconfig"; path = "Target Support Files/Pods-KinopoiskFilmsApp/Pods-KinopoiskFilmsApp.debug.xcconfig"; sourceTree = "<group>"; };
 		FB027406C61728ED51AB48CE /* Pods-KinopoiskFilmsApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KinopoiskFilmsApp.release.xcconfig"; path = "Target Support Files/Pods-KinopoiskFilmsApp/Pods-KinopoiskFilmsApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -107,9 +105,8 @@
 			isa = PBXGroup;
 			children = (
 				7C94FC1B23EB082800D55670 /* BaseView.swift */,
-				7C94FC2223EB151C00D55670 /* BaseLabel.swift */,
+				7C94FC2223EB151C00D55670 /* BaseTextLabel.swift */,
 				7C28A34B23EBE80F001EC68E /* BaseImage.swift */,
-				7CF158BA23F6E254007D33F8 /* TextBaseLabel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -307,13 +304,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C94FC1623EAF3E300D55670 /* FilmCell.swift in Sources */,
-				7C94FC2323EB151C00D55670 /* BaseLabel.swift in Sources */,
+				7C94FC2323EB151C00D55670 /* BaseTextLabel.swift in Sources */,
 				7CA429BA23F679FC00E4FC96 /* UIAlertController+.swift in Sources */,
 				7C94FC1E23EB0E2C00D55670 /* RootViewController.swift in Sources */,
 				7C94FC2723EB283800D55670 /* FilmDetailViewController.swift in Sources */,
 				7CF158BD23F6EFF8007D33F8 /* Utils.swift in Sources */,
 				7C28A34C23EBE80F001EC68E /* BaseImage.swift in Sources */,
-				7CF158BB23F6E254007D33F8 /* TextBaseLabel.swift in Sources */,
 				7C94FC0723EAE86C00D55670 /* AppDelegate.swift in Sources */,
 				7CA429B423F6045A00E4FC96 /* URLRequest+.swift in Sources */,
 				7CA429B023F6037F00E4FC96 /* APIClient.swift in Sources */,

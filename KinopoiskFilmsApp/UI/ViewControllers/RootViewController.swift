@@ -10,12 +10,9 @@ import TinyConstraints
 
 class RootViewController: UITableViewController {
     
-    /// Films grouped by years
     var filmsArray: [[Film]] = []
     var selectedFilm: Film!
     var isRefreshing = false
-    
-    
     let repository = Repository(apiClient: APIClient())
     
     lazy var spinner: UIActivityIndicatorView = {
@@ -44,20 +41,6 @@ class RootViewController: UITableViewController {
         loadFilms()
     }
     
-    fileprivate func startSpinner() {
-        spinner.startAnimating()
-    }
-    
-    fileprivate func stopSpinner() {
-        spinner.stopAnimating()
-    }
-    
-    fileprivate func showAlert()  {
-        let alertContoller = UIAlertController.alert(title: "Internet Connection Error", message: "Would you like to try again?") {
-            self.loadFilms()
-        }
-        self.present(alertContoller, animated: true, completion: nil)
-    }
     
     // MARK: - Network
     
@@ -69,42 +52,23 @@ class RootViewController: UITableViewController {
             switch result {
             case .success(let items):
                 if let items = items["films"] {
-                    self.filmsArray = self.groupByYears(items)
-                    
+                    self.filmsArray = Film.groupByYears(items)
                 }
                 
                 DispatchQueue.main.async {
-                    self.stopSpinner()
-                    self.tableView.reloadData()
-                    self.refreshControl?.endRefreshing()
+                    self.updateUIOnFinishNetworkCall()
                 }
             case .failure(let error):
-                print("\(self) retrive error on get films: \(error)")
-                self.showAlert()
-                self.stopSpinner()
-                self.refreshControl?.endRefreshing()
+                self.showAlert(error: error)
+                self.updateUIOnFinishNetworkCall()
             }
         }
     }
     
-    fileprivate func groupByYears(_ films: [Film]) -> [[Film]]{
-        var grouped: [[Film]] = []
-        let groupByYear: [Int : [Film]] = Dictionary(grouping: films) { $0.year }
-        
-        let sortedYears = groupByYear.keys.sorted()
-        
-        sortedYears.forEach {(key) in
-            let films = groupByYear[key]
-            let orderByRating = films?.sorted(by: { (lhs, rhs) -> Bool in
-                if  let lhsRating = lhs.rating, let rhsRating = rhs.rating
-                {
-                    return rhsRating < lhsRating
-                }
-                return false
-            })
-            grouped.append(orderByRating ?? [])
-        }
-        return grouped
+    fileprivate func updateUIOnFinishNetworkCall() {
+        self.tableView.reloadData()
+        self.stopSpinner()
+        self.refreshControl?.endRefreshing()
     }
     
     // MARK: - Table View Support
@@ -113,7 +77,7 @@ class RootViewController: UITableViewController {
         tableView.tableFooterView = UIView()
         tableView.separatorStyle = .none
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = FilmCell.rowHeightSize
+        tableView.estimatedRowHeight = 150
         tableView.clipsToBounds = true
         tableView.isOpaque = true
     }
@@ -142,12 +106,10 @@ class RootViewController: UITableViewController {
     // MARK: - Table View Delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         let filmDetailVc = FilmDetailViewController()
         let filmSelected = filmsArray[indexPath.section][indexPath.row]
         tableView.deselectRow(at: indexPath, animated: false)
         filmDetailVc.film = filmSelected
-        
         navigationController?.pushViewController(filmDetailVc, animated: true)
     }
     
@@ -156,26 +118,22 @@ class RootViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = BaseLabel(backgroundColor: #colorLiteral(red: 0.7176470588, green: 0.7176470588, blue: 0.7176470588, alpha: 1), text: "Section: \(section)", font: .boldSystemFont(ofSize: 22), borderWidth: 0)
+        let sectionLabel = BaseTextLabel(backgroundColor: #colorLiteral(red: 0.7176470588, green: 0.7176470588, blue: 0.7176470588, alpha: 1))
+        sectionLabel.font = .preferredFont(forTextStyle: .title2)
         
-        
-        if !filmsArray.isEmpty {
-            
-            if let film = filmsArray[section].first {
-                header.text = String(film.year)
-                header.textAlignment = .center
-            }
+        if let film = filmsArray[section].first {
+            sectionLabel.text = String(film.year)
+            sectionLabel.textAlignment = .center
         }
-        let headerContainer = BaseView(backgroundColor: .white, borderWidth: 0)
-        let labelContainer = BaseView(backgroundColor: #colorLiteral(red: 0.7176470588, green: 0.7176470588, blue: 0.7176470588, alpha: 1), borderWidth: 2)
         
-        labelContainer.addSubview(header)
-        headerContainer.addSubview(labelContainer)
-        labelContainer.edges(to: headerContainer, insets: TinyEdgeInsets(top: 5, left: 16, bottom: 5, right: 16), isActive: true)
-        header.height(25)
-        header.width(100)
-        header.center(in: labelContainer)
-        return headerContainer
+        let sectionView = BaseView()
+        let sectionContainerView = BaseView(backgroundColor: #colorLiteral(red: 0.7176470588, green: 0.7176470588, blue: 0.7176470588, alpha: 1), borderWidth: 1)
+        sectionContainerView.addSubview(sectionLabel)
+        sectionView.addSubview(sectionContainerView)
+        sectionContainerView.edges(to: sectionView, insets: TinyEdgeInsets(top: 5, left: 16, bottom: 5, right: 16), isActive: true)
+        sectionLabel.center(in: sectionContainerView)
+        
+        return sectionView
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -200,7 +158,25 @@ class RootViewController: UITableViewController {
         
         return cell
     }
+    
+    // MARK: - UI supports
+    
+    fileprivate func startSpinner() {
+        spinner.startAnimating()
+    }
+    
+    fileprivate func stopSpinner() {
+        spinner.stopAnimating()
+    }
+    
+    fileprivate func showAlert(error: Error)  {
+        let alertContoller = UIAlertController.alert(title: "Ошибка: \(error)", message: "Повторить запрос?") {
+            self.loadFilms()
+        }
+        self.present(alertContoller, animated: true, completion: nil)
+    }
 }
+
 
 
 
